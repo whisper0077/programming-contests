@@ -1,2 +1,5 @@
 # programming-contests
-competitive programming
+
+* AtCoder
+* Codeforces
+* Google Code Jam
