@@ -2,15 +2,15 @@ import sys
 sys.setrecursionlimit(10**8)
 
 # ナップザック問題 典型
-N,W=map(int,input().split())
-wv=[list(map(int,input().split())) for i in range(N)]
+N, W = map(int, input().split())
+wv = [list(map(int, input().split())) for i in range(N)]
 
-dp=[[0]*(W+1) for i in range(N+1)]
+dp = [[0]*(W+1) for i in range(N+1)]
 
 for i in range(N):
-    for j in range(0,W+1):
-        if (j-wv[i][0])>=0:
-            dp[i+1][j] = max([dp[i][j],dp[i][j-wv[i][0]] + wv[i][1]])
+    for j in range(0, W+1):
+        if (j-wv[i][0]) >= 0:
+            dp[i+1][j] = max([dp[i][j], dp[i][j-wv[i][0]] + wv[i][1]])
         else:
             dp[i+1][j] = dp[i][j]
 
