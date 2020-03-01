@@ -67,3 +67,5 @@ for q in range(Q):
         r = int(r)-1
         v = seg.query(l, r+1)
         print(bitcount(v))
+
+# BIT(Binary Indexed Tree) / bisectでも解いてみる
