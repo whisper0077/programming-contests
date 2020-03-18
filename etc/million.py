@@ -1,8 +1,9 @@
 import itertools
 
-N = int(input())
-W = 5
-S = 1001 * N
+N = int(input())    # 手持ちカード数
+W = 5               # デッキに組み込める数
+S = 1000 * W + 1    # W枚選んだときの総スキルレベル
+
 cards = [list(map(int, input().split())) for i in range(N)]
 
 # 手持ちカードn枚目までからw枚選択し、総スキルレベルごとのvalue最大値を求める
@@ -38,7 +39,6 @@ while w > 0:
             deck.append([cv, cl])
             lv = lv-cl
             w -= 1
-            found = True
             break
     n -= 1
 
