@@ -1,5 +1,5 @@
 
-def is_prime(n):
+def isPrime(n):
     # nの素数判定
     if n == 1:
         return False
@@ -21,7 +21,7 @@ def divisor(n):
     return ass  # sortされていない
 
 
-def prime_factor(n):
+def primeFactor(n):
     # nの素因数分解(O(n**0.5)
     ass = []
     for i in range(2, int(n**0.5)+1):
@@ -33,9 +33,9 @@ def prime_factor(n):
     return ass
 
 
-def fctr1(n):
-    # [[素因数,数]]を出力
-    f = []
+def factorList(n):
+    # [素因数]=数を出力
+    f = {}
     c = 0
     r = int(n**0.5)
     for i in range(2, r+2):
@@ -43,10 +43,10 @@ def fctr1(n):
             c += 1
             n = n//i
         if c != 0:
-            f.append([i, c])
+            f[i] = c
             c = 0
     if n != 1:
-        f.append([n, 1])
+        f[n] = 1
     return f
 
 
@@ -67,7 +67,7 @@ def primes(n):
     return ass
 
 
-def segment_sieve(a, b):
+def segmentSieve(a, b):
     # a以上b未満の素数列挙
     ass = []
     is_prime_small = [True] * (int(b**0.5)+1)

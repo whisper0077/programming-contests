@@ -1,5 +1,6 @@
 
-def fctr1(n):
+def factorList(n):
+    # [素因数]=数を出力
     f = {}
     c = 0
     r = int(n**0.5)
@@ -16,7 +17,7 @@ def fctr1(n):
 
 
 N = int(input())
-p = fctr1(N)
+p = factorList(N)
 ans = 0
 for k, v in p.items():
     c = 0
