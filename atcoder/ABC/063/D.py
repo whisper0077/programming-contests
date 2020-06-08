@@ -2,21 +2,24 @@ N, A, B = map(int, input().split())
 h = [int(input()) for _ in range(N)]
 h.sort()
 
-ans = 0
-l, r = 1, max(h)//B+1
-while l < r:
-    m = (l+r)//2
-    c = m
+
+def isOk(k):
+    return k >= 0
+
+
+ok, ng = max(h)//B+1, 0
+while abs(ok-ng) > 1:
+    mid = (ok+ng)//2
+    c = mid
     for i in range(N):
-        t = h[i]-m*B
+        t = h[i]-mid*B
         if t > 0:
             c -= (t+A-B-1)//(A-B)
             if c < 0:
                 break
-
-    if c >= 0:
-        r = m
+    if isOk(c):
+        ok = mid
     else:
-        l = m+1
+        ng = mid
 
-print(l)
+print(ok)
