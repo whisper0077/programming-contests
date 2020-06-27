@@ -28,6 +28,11 @@ class Combination:
         return self.fact[n]*self.ifact[n-r] % self.mod
 
 
-if __name__ == "__main__":
-    c = Combination(10**5, 10**9+7)
-    print(c.choose(10**5, 4))
+MOD = 10**9+7
+N, M = map(int, input().split())
+c = Combination(M, MOD)
+ans = 0
+for i in range(N+1):
+    a = (-1)**i * c.c(N, i)*c.p(M, i)*(c.p(M-i, N-i)**2) % MOD
+    ans = (ans+a) % MOD
+print(ans)
