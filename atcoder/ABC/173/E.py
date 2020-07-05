@@ -32,6 +32,13 @@ else:
 
     pi, mi = 0, 0
     ans = 1
+
+    # Kが奇数の場合はplusから最初に一つとっておく
+    if K % 2 == 1:
+        pi = 1
+        ans = p[0]
+        K -= 1
+
     while K > 0:
         if K == 1:
             ans = (ans*p[pi]) % MOD
@@ -44,13 +51,12 @@ else:
                 mv = m[mi]*m[mi+1]
 
             if pv > mv:
-                ans = (ans*p[pi]) % MOD
-                pi += 1
-                K -= 1
+                ans = (ans*pv) % MOD
+                pi += 2
             else:
                 ans = (ans*mv) % MOD
                 mi += 2
-                K -= 2
+            K -= 2
         else:
             ans = 0
             break
