@@ -1,0 +1,19 @@
+X = int(input())
+ans = 0
+if X >= 1800:
+    ans = 1
+elif X >= 1600:
+    ans = 2
+elif X >= 1400:
+    ans = 3
+elif X >= 1200:
+    ans = 4
+elif X >= 1000:
+    ans = 5
+elif X >= 800:
+    ans = 6
+elif X >= 600:
+    ans = 7
+elif X >= 400:
+    ans = 8
+print(ans)
