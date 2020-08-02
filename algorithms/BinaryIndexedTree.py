@@ -14,6 +14,7 @@ class BIT:
         self.n = n
         self.tree = [ie]*(n+1)
         self.op = op
+        self.ie = ie
 
     def update(self, i, v):
         while i <= self.n:
@@ -21,7 +22,7 @@ class BIT:
             i += i & -i
 
     def query(self, i):
-        v = 0
+        v = self.ie
         while i:
             v = self.op(self.tree[i], v)
             i -= i & -i
