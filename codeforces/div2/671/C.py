@@ -6,9 +6,10 @@ for t in range(int(input())):
         b = v+4000
         if b != x:
             a.append(b)
+    s = sum(a)
     if len(a) == 0:
         print(0)
-    elif len(a) != n or sum(a)//len(a) == x:
+    elif len(a) != n or (s % len(a) == 0 and s//len(a) == x):
         print(1)
     else:
         print(2)
