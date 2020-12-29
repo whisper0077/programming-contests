@@ -8,7 +8,7 @@ def Dijkstra(n, g, s):
     '''
     ダイクストラによる単一始点最短経路(負の辺はだめ)
     gは隣接行列なので効率は悪いかも
-    O(E logV)
+    本来はO(E logV)
     '''
     d = [float('inf')]*n
     d[0] = 0
