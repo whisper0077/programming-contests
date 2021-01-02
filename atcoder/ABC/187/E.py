@@ -13,13 +13,13 @@ for i in range(n-1):
 # 0を根にした木の高さを求めておく
 depth = [-1]*n
 depth[0] = 0
-q = deque([[0, 0]])
+q = deque([0])
 while q:
-    s, d = q.popleft()
-    depth[s] = d
+    s = q.popleft()
     for t in g[s]:
         if depth[t] == -1:
-            q.append([t, d+1])
+            depth[t] = depth[s]+1
+            q.append(t)
 
 v = [0]*n
 for i in range(int(input())):
@@ -33,13 +33,13 @@ for i in range(int(input())):
     else:
         v[a] += x
 
-q = deque([[0, v[0]]])
+q = deque([0])
 while q:
-    s, c = q.popleft()
+    s = q.popleft()
     for t in g[s]:
         if depth[s] < depth[t]:
-            v[t] = c+v[t]
-            q.appendleft([t, v[t]])
+            v[t] = v[s]+v[t]
+            q.appendleft(t)
 
 for i in range(n):
     print(v[i])
