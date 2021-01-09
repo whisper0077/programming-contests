@@ -26,6 +26,9 @@ class UnionFind():
     def same(self, x, y):
         return self.find(x) == self.find(y)
 
+    def count(self, x):
+        return -self.parents[x]
+
 
 if __name__ == "__main__":
     v = [1, 2, 3, 4, 5]
