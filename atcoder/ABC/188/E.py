@@ -1,3 +1,4 @@
+from functools import lru_cache
 import sys
 sys.setrecursionlimit(10**6)
 
@@ -8,14 +9,12 @@ for i in range(M):
     x, y = map(int, input().split())
     g[x-1].append(y-1)
 
-used = [-float('inf')]*N
 ans = -float('inf')
 
 
+@lru_cache(None)
 def dfs(v):
     global ans
-    if used[v] != -float('inf'):
-        return used[v]
     ny = -float('inf')
     if len(g[v]) > 0:
         by = A[v]
@@ -24,12 +23,10 @@ def dfs(v):
             ny = max(ny, dfs(u), A[u])
         #print("buy", v, by, ny)
         ans = max(ans, ny-by)
-        used[v] = ny
     return ny
 
 
 for i in range(N):
-    if used[i] == -float('inf'):
-        dfs(i)
+    dfs(i)
 
 print(ans)
