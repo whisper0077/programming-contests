@@ -1,3 +1,4 @@
+from itertools import accumulate
 from operator import add, mul, sub, or_, xor
 
 
@@ -44,10 +45,20 @@ class SegmentTree:
         return ret
 
 
-if __name__ == "__main__":
-    a = [i for i in range(100+1)]
-    seg = SegmentTree(a, add, 0)
+N = int(input())
+*A, = map(int, input().split())
+x = SegmentTree(A, xor, 0)
+s = [0]+list(accumulate(A))
 
-    print(seg.query(1, 10))
-    seg.update(5, 0)
-    print(seg.query(1, 10))
+ans = 0
+for i in range(N):
+    l, r = i, N
+    while (r-l) > 1:
+        m = (l+r)//2
+        if (s[m+1]-s[i]) == x.query(i, m+1):
+            #print("ok", i, m, "sum=", s[m+1]-s[i], "xor=", x.query(i, m+1))
+            l = m
+        else:
+            r = m
+    ans += l-i+1
+print(ans)
