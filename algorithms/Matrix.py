@@ -12,11 +12,11 @@ def mulv(Ma, v):
 
 def mulm(Ma, Mb):
     m = len(Ma)
-    n = len(Ma[0])  # len(Mb)
-    o = len(Mb[0])
-    Mc = [[0]*o for _ in range(m)]
+    l = len(Ma[0])  # == len(Mb)
+    n = len(Mb[0])
+    Mc = [[0]*n for _ in range(m)]
     for i in range(m):
-        for k in range(n):
-            for j in range(o):
+        for j in range(n):
+            for k in range(l):
                 Mc[i][j] += Ma[i][k] * Mb[k][j]
     return Mc
