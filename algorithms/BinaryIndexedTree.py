@@ -3,7 +3,7 @@ from operator import add, mul, sub, or_
 
 class BIT:
     '''
-    Binary Indexed Tree
+    Binary Indexed Tree(1-indexed)
     update
         LSBを加算しながら更新
     query
