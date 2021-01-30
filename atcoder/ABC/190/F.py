@@ -2,6 +2,14 @@ from operator import add, mul, sub, or_
 
 
 class BIT:
+    '''
+    Binary Indexed Tree(1-indexed)
+    update
+        LSBを加算しながら更新
+    query
+        LSBを減算しながらop
+    '''
+
     def __init__(self, n, op=add, ie=0):
         self.n = n
         self.tree = [ie]*(n+1)
@@ -13,12 +21,15 @@ class BIT:
             self.tree[i] = self.op(self.tree[i], v)
             i += i & -i
 
-    def query(self, i):
+    def sum(self, i):
         v = self.ie
         while i:
             v = self.op(self.tree[i], v)
             i -= i & -i
         return v
+
+    def query(self, l, r):
+        return self.sum(r)-self.sum(l)
 
 
 N = int(input())
@@ -26,7 +37,7 @@ N = int(input())
 bt = BIT(N+1)
 ans = 0
 for i in range(N):
-    ans += i-bt.query(a[i]+1)
+    ans += bt.query(a[i]+1, N+1)
     bt.update(a[i]+1, 1)
 
 print(ans)

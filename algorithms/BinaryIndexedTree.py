@@ -21,19 +21,22 @@ class BIT:
             self.tree[i] = self.op(self.tree[i], v)
             i += i & -i
 
-    def query(self, i):
+    def sum(self, i):
         v = self.ie
         while i:
             v = self.op(self.tree[i], v)
             i -= i & -i
         return v
 
+    def query(self, l, r):
+        return self.sum(r)-self.sum(l)
+
 
 if __name__ == "__main__":
     bit = BIT(10)
-    print(bit.query(10))
+    print(bit.sum(10))
     bit.update(8, 1)
-    print(bit.query(10))
+    print(bit.sum(10))
     bit.update(6, 1)
-    print(bit.query(10))
-    print(bit.query(7))
+    print(bit.sum(10))
+    print(bit.sum(7))
