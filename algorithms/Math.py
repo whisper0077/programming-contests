@@ -1,7 +1,14 @@
 def isqrt(n):
-    x, y = n, (n + 1) // 2
+    '''
+    ニュートン法による整数の平方根
+    '''
+    if n == 0:
+        return 0
+    x = 1 << (n.bit_length() + 1) // 2
+    y = (x + n // x) // 2
     while y < x:
-        x, y = y, (y + n // y) // 2
+        x = y
+        y = (x + n // x) // 2
     return x
 
 
