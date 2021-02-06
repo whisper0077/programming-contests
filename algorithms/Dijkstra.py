@@ -4,6 +4,22 @@ from scipy.sparse.csgraph import dijkstra
 from scipy.sparse import csr_matrix
 
 
+def e_dijkstra(g, s):
+    n = len(g)
+    d = [INF]*n
+    d[s] = 0
+    q = [(0, s)]
+    while q:
+        c, u = heapq.heappop(q)
+        if d[u] < c:
+            continue
+        for v, nc in g[u]:
+            if (d[u]+nc) < d[v]:
+                d[v] = d[u]+nc
+                heapq.heappush(q, (d[v], v))
+    return d
+
+
 def Dijkstra(n, g, s):
     '''
     ダイクストラによる単一始点最短経路(負の辺はだめ)
@@ -11,10 +27,10 @@ def Dijkstra(n, g, s):
     本来はO(E logV)
     '''
     d = [float('inf')]*n
-    d[0] = 0
+    d[s] = 0
 
     h = []
-    heapq.heappush(h, [0, 0])
+    heapq.heappush(h, [0, s])
 
     visit = [False]*n
     while len(h) > 0:
