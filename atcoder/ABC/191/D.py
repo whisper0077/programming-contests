@@ -15,10 +15,10 @@ Y = round(Y*10000)
 R = round(R*10000)
 
 ans = 0
-sx = -(-(X-R)//10000)*10000
+sx = (X-R+9999)//10000*10000
 for x in range(sx, X+R+1, 10000):
     d = isqrt(R*R-(X-x)**2)
-    b, t = -(-(Y-d)//10000), (Y+d)//10000
+    b, t = (Y-d+9999)//10000, (Y+d)//10000
     ans += t-b+1
 
 print(ans)
