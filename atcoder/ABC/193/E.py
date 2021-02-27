@@ -1,26 +1,3 @@
-def isqrt(n):
-    '''
-    ニュートン法による整数の平方根
-    '''
-    if n == 0:
-        return 0
-    x = 1 << (n.bit_length() + 1) // 2
-    y = (x + n // x) // 2
-    while y < x:
-        x = y
-        y = (x + n // x) // 2
-    return x
-
-
-def ceil(n, d):
-    # return -(-n//d)
-    return (n+d-1)//d
-
-
-def floor(n, d):
-    return n//d
-
-
 def gcd(a, b):
     while b:
         a, b = b, a % b
@@ -66,21 +43,15 @@ def crt(r, m):
     return (r0, m0)
 
 
-def modinv(a, p):
-    '''
-    extgcdを用いた、ax ≡ 1 (mod p)となるxを求める（aの逆元）
-    '''
-    g, x, y = extgcd(a, p)
-    if g != 1:
-        return -1
-    else:
-        # xは負の可能性がある
-        return x % p
-
-
-if __name__ == "__main__":
-    print(gcd(6, 12))
-    print(lcm(2, 3))
-    for i in range(1, 13):
-        print(modinv(i, 13))
-    print(crt([2, 3], [3, 5]))
+INF = 10**20
+for t in range(int(input())):
+    x, y, p, q = map(int, input().split())
+    ans = INF
+    for t1 in range(x, x+y):
+        for t2 in range(p, p+q):
+            m, d = crt([t1, t2], [2*x+2*y, p+q])
+            if d > 0:
+                ans = min(m, ans)
+    if ans == INF:
+        ans = "infinity"
+    print(ans)
