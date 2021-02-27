@@ -55,14 +55,15 @@ def crt(r, m):
         return (0, 0)
     r0, m0 = 0, 1
     for i in range(len(r)):
+        # m0*x + m1*y = gcd(m0, m1)
+        # m0*x ≡ gcd(m0, m1) (mod m1)
         d, x, y = extgcd(m0, m[i])
         if (r[i]-r0) % d != 0:
             return (0, 0)
 
-        u = m[i]//d
-        tmp = (r[i]-r0)//d * x % u
-        r0 += m0*tmp
-        m0 *= u
+        u = m0 * m[i]//d  # lcm(m0, m1)
+        r0 += (r[i]-r0)//d * m0 * x % u
+        m0 = u
     return (r0, m0)
 
 
