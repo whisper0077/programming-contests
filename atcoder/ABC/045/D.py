@@ -1,17 +1,10 @@
-from collections import defaultdict
-
-H, W, N = map(int, input().split())
-ab = [list(map(int, input().split())) for _ in range(N)]
-h = defaultdict(int)
-for a, b in ab:
-    for y in range(max([a - 2, 1]), min([a, H - 2]) + 1):
-        for x in range(max([b - 2, 1]), min([b, W - 2]) + 1):
-            h[(y, x)] += 1
-
-ans = [0] * 10
-for v in h.values():
-    ans[v] += 1
-ans[0] = (H - 2) * (W - 2) - sum(ans[1:])
-
-for a in ans:
-    print(a)
+N = int(input())
+dp = [[0]*(N+2) for _ in range(N+2)]
+dp[0][1] = 1
+S = ["."+input()+"." for _ in range(N)]
+S = ["."*(N+2)]+S+["."*(N+2)]
+for y in range(1, N+1):
+    for x in range(1, N+1):
+        if S[y][x] == ".":
+            dp[y][x] = dp[y-1][x]+dp[y][x-1]
+print(dp[N][N])
