@@ -1,7 +1,8 @@
 {
-    "python.formatting.provider": "autopep8",
-    "python.linting.pylintEnabled": true,
-    "python.formatting.autopep8Args": [
-        "--max-line-length=255"
-    ]
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.defaultFormatter": "ms-python.vscode-pylance",
+        "editor.formatOnType": true,
+        "editor.wordBasedSuggestions": "off"
+    }
 }
